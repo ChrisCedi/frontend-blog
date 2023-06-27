@@ -1,15 +1,24 @@
+import { getStrapiURL } from "@/helpers/api-helper";
+import { fetchApi } from "@/helpers/fetch-api";
+
 const getData = async () => {
-  const response = await fetch(
-    "https://strapi-production-1a17.up.railway.app/api/news",
-    {
-      next: { revalidate: 0 },
-    }
-  );
-  const data = await response.json();
+  const path = "/news";
+  const urlParamsObject = {
+    populate: "*",
+    sort: {
+      createdAt: "asc",
+    },
+    pagination: {
+      page: 1,
+      pageSize: 2,
+    },
+  };
+  const { data, meta } = await fetchApi(path, urlParamsObject);
 
-  console.log(data);
-
-  return data;
+  return {
+    data,
+    pagination: meta.pagination,
+  };
 };
 const Blog = async () => {
   const { data } = await getData();
