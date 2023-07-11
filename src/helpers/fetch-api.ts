@@ -8,7 +8,7 @@ export const fetchApi = async (
 ) => {
   try {
     const mergedOptions = {
-      next: { revalidate: 0 },
+      next: { revalidate: 60 },
       ...options,
       headers: {
         "Content-Type": "application/json",
