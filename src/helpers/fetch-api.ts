@@ -4,7 +4,7 @@ import { getStrapiURL } from "./api-helper";
 export const fetchApi = async (
   path: string,
   urlParamsObject: {},
-  options: {}
+  options = {}
 ) => {
   try {
     const mergedOptions = {
